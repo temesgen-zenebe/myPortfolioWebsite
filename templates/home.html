@@ -1,0 +1,636 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Temesgen's Portfolio."/>
+    <title>Temesgen's PortfolioSite</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" /> 
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="m-3 rounded-1">
+        <nav id="navbar-example2" class="navbar  mx-3 px-3 navbar-bg border-bottom">
+            <a class="navbar-brand d-none d-lg-block text-white text-center mx-5" href="#">Temesgen's Portfolio</a>
+            <ul class="nav nav-pills mx-3">
+              <li class="nav-item">
+                <a class="nav-link link navbar-brand text-decoration-none text-white" href="#scrollspyHeading1">Projects</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link navbar-brand text-decoration-none text-white" href="#scrollspyHeading2">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link navbar-brand text-decoration-none  text-white " href="#scrollspyHeading3">Contact</a>
+              </li>
+            </ul>
+           
+        </nav>
+        <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light px-3 rounded-2" tabindex="0">
+          
+            <header class="masthead">
+                <div class="container position-relative">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-6">
+                            <div class="text-center text-white">
+                                
+                                <a class="navbar-brand js-scroll-trigger" href="#">
+                                    <span class="d-none d-lg-block mb-2"><img class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/profile.jpg'%} alt="..." /></span>
+                                    <h4>Temesgen T Zenebe</h4>
+                                    <span class="d-block ">Full stack softwer developer</span>
+                                </a>
+                                <div class="btn-group btn-group-sm py-4" role="group" aria-label="Small button group">
+                                    <a type="button" class="btn btn-outline-light" href="#scrollspyHeading2">
+                                    More <i class="bi bi-box-arrow-down"></i>
+                                    </a>
+                                </div>
+                                <div class="btn gap-1 " role="group" aria-label="Large button group">
+                                  
+                                  <button type="button" class="btn btn-outline-primary">
+                                    <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/html.png'%} alt="..." />
+                                  </button>
+                                  <button type="button" class="btn btn-outline-primary">
+                                    <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/css.png'%} alt="..." />
+                                  </button>
+                                  <button type="button" class="btn btn-outline-primary">
+                                    <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/python.png'%} alt="..." />
+                                  </button>
+                                  <button type="button" class="btn btn-outline-primary">
+                                    <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/django.png'%} alt="..." />
+                                  </button>
+                                  <button type="button" class="btn btn-outline-primary">
+                                    <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/vuejs.png'%} alt="..." />
+                                  </button>
+                                  <button type="button" class="btn btn-outline-primary">
+                                    <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/postgresql.png'%} alt="..." />
+                                  </button>
+                                  <button type="button" class="btn btn-outline-primary">
+                                    <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/javascript.png'%} alt="..." />
+                                  </button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+              </header>
+            <div class="m-1 my-5 p-3 bg-light text-center text-dark" id="scrollspyHeading1"> 
+                <h4 class="mb-2  header-link">PORTFOLIO</h4>
+                <h6 class="mb-2  header-link">All Recent Projects</h6>
+                <hr>
+              
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                  {% if ProjectList %}
+                    {% for project in ProjectList %}
+                      <div class="col ">
+                        <div class="card shadow">
+                          <img src="{{project.picture.url}}" class="card-img-top mx-auto d-block" height="200px" alt="{{project.alt}}">
+                          <div class="card-body">
+                            <h5 class="card-title">{{ project.title }} </h5>
+                            <p><small class="text-muted">{{ project.created|date:"M d, Y"}} </small></p>   
+                            <div class="btn-group btn-group-sm py-2 " role="group" aria-label="Small button group">
+                              
+                              <a type="button" class="btn btn-outline-dark" href="{% url 'portfolio:detail' project.id %}">
+                              More <i class="bi bi-arrows-fullscreen"></i>
+                              </a>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    {% endfor %}
+                  {% endif %}
+                </div>
+            </div>
+          
+            <div class="m-1 my-5 p-3 bg-light text-dark" id="scrollspyHeading2"> 
+                <h4 class="mb-2  header-link text-center">About Me</h4>
+
+                <h6 class="my-3 mx-2 header-link">Objective</h6>
+                <hr>
+                <div class="row row-cols-1 row-cols-md-1 g-4">
+                    <div class="col ">
+                        <div class="card shadow text-bg-sucess">
+                            <div class="card-img-overlay about-overly text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-2">Career Objective</h5>
+                                    <p class="card-text">Recent Full-stack Developer graduate with a passion and expert combining
+                                        developing web applications and working across both front-end and back-end development that is scalable for websites and software applications. I
+                                        am looking to join forces with your Technologies team to continue to grow
+                                        my skill set while contributing to the positive impacts of making your
+                                        Company "profitable, secure, and successful."</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                        
+                </div>
+
+                <h6 class="mt-5 mx-2 header-link">Key Skills</h6>
+                <hr>
+                <div class="my-4 "> 
+
+                    <div class="row row-cols-1 row-cols-xxl-1 g-3">
+                        <div class="col btn gap-3 border " role="group" aria-label="Large button group">
+                          <h6 >Full stack  Languages and Frameworks</h6>
+                          <button type="button" class="btn btn-outline-primary">
+                            <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/html.png'%} alt="..." />
+                          </button>
+                          <button type="button" class="btn btn-outline-primary">
+                            <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/css.png'%} alt="..." />
+                          </button>
+                          <button type="button" class="btn btn-outline-primary">
+                            <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/python.png'%} alt="..." />
+                          </button>
+                          <button type="button" class="btn btn-outline-primary">
+                            <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/django.png'%} alt="..." />
+                          </button>
+                          <button type="button" class="btn btn-outline-primary">
+                            <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/vuejs.png'%} alt="..." />
+                          </button>
+                          <button type="button" class="btn btn-outline-primary">
+                            <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/postgresql.png'%} alt="..." />
+                          </button>
+                          <button type="button" class="btn btn-outline-primary">
+                            <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/javascript.png'%} alt="..." />
+                          </button>
+                          <button type="button" class="btn btn-outline-primary">
+                            <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/ExpressJS.png'%} alt="..." />
+                          </button>
+                          <button type="button" class="btn btn-outline-primary">
+                            <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/jquery.png'%} alt="..." />
+                          </button>
+                          <button type="button" class="btn btn-outline-primary">
+                            <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={% static  'images/json.png'%} alt="..." />
+                          </button>
+                          
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        
+                        <div class="col">
+                          <div class="card border-success navbar-bg shadow">
+                            <div class="card-body text-white">
+                              <h6 class="card-title text-center mx-1">Front-end Languages and Frameworks</h6>
+                              <hr>
+                              <div class="card-text">
+                                    <ul class="keySkills gap-1">
+                                        <li><i class="bi bi-check2-circle"></i> HTML5</li>
+                                        <li><i class="bi bi-check2-circle"></i> CSS</li>
+                                        <li><i class="bi bi-check2-circle"></i> Vue.js</li>
+                                        <li><i class="bi bi-check2-circle"></i> AJAX</li>
+                                        <li><i class="bi bi-check2-circle"></i> JSON</li>
+                                        <li><i class="bi bi-check2-circle"></i> jQuery</li>
+                                        <li><i class="bi bi-check2-circle"></i> JavaScript</li>
+                                        <li><i class="bi bi-check2-circle"></i> Bootstrap</li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                            <div class="card border-success navbar-bg shadow">
+                                <div class="card-body text-white">
+                                  <h6 class="card-title text-center mx-1">Backend Technologies and Frameworks</h6>
+                                  <hr>
+                                  <div class="card-text">
+                                        <ul class="keySkills gap-1">
+                                            <li><i class="bi bi-check2-circle"></i> Python</li>
+                                            <li><i class="bi bi-check2-circle"></i> Django</li>
+                                            <li><i class="bi bi-check2-circle"></i> NodeJS</li>
+                                            <li><i class="bi bi-check2-circle"></i> ExpressJS</li>
+                                            <li><i class="bi bi-check2-circle"></i> APIS</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col">
+                            <div class="card border-success navbar-bg shadow">
+                                <div class="card-body text-white">
+                                  <h6 class="card-title text-center mx-1">Version Control Systems</h6>
+                                  <hr>
+                                  <div class="card-text">
+                            
+                                        <ul class="keySkills2 gap-1">
+                                            <li><i class="bi bi-check2-circle"></i> GitHub </li>
+                                            <li><i class="bi bi-check2-circle"></i> Git Bash</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col">
+                            <div class="card border-success navbar-bg shadow">
+                                <div class="card-body text-white">
+                                  <h6 class="card-title text-center">Cloud web hosting and Data Wearhouse platforms</h6>
+                                  <hr>
+                                  <div class="card-text">
+                                        <ul class="keySkills2 gap-1">
+                                            <li><i class="bi bi-check2-circle"></i> Heroku hosting</li>
+                                            <li><i class="bi bi-check2-circle"></i> AWS Data Wearhouse</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                              </div>
+                        </div>                  
+                        <div class="col">
+                            <div class="card border-success navbar-bg shadow">
+                                <div class="card-body text-white">
+                                  <h6 class="card-title text-center mx-1">Database Management Systems</h6>
+                                  <hr>
+                                  <div class="card-text">
+                                        <ul class="keySkills2 gap-1">
+                                            <li><i class="bi bi-check2-circle"></i> PostgreSQL</li>
+                                            <li><i class="bi bi-check2-circle"></i> MySQL</li>
+                                            <li><i class="bi bi-check2-circle"></i> db.sqlite3</li>
+                                            <li><i class="bi bi-check2-circle"></i> Local Storage</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col">
+                            <div class="card border-success navbar-bg shadow">
+                                <div class="card-body text-white">
+                                  <h6 class="card-title text-center mx-1">Supporting Skills</h6>
+                                  <hr>
+                                  <div class="card-text">
+                                        <ul class="keySkills2 gap-1">
+                                            <li><i class="bi bi-check2-circle"></i> Photoshop </li>
+                                            <li><i class="bi bi-check2-circle"></i> Excel and PowerPoint</li>
+                                            <li><i class="bi bi-check2-circle"></i> Report Writing</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col">
+                            <div class="card border-success navbar-bg shadow">
+                                <div class="card-body text-white">
+                                  <h6 class="card-title text-center mx-1">spoken & written Languages</h6>
+                                  <hr>
+                                  <div class="card-text">
+                                        <ul class="keySkills2 gap-1">
+                                            <li><i class="bi bi-check2-circle"></i> English</li>
+                                            <li><i class="bi bi-check2-circle"></i> Amharic</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                              </div>
+                        </div>
+                      </div>
+                </div>   
+            </div>
+           <!--Contact me-->
+            <h4 class="header-link text-center ">Contact me</h4>
+            <div class="my-2 contactDetails-overly  rounded-1" id="scrollspyHeading3"> 
+                <div class="row row-cols-1 row-cols-md-1 my-1 ">
+                    <div class="col my-2">
+                      <div class="border-0">
+                        <div class="d-flex justify-content-between  mx-5 py-1 ">
+                            <div id="contactDetails" class="rounded-1"> 
+                                <ul >
+                                    <li><h6 class="card-title px-1">Contact info.</h6></li>
+                                    <hr>
+                                    <li><a class="d-flex" href="mailto:joe@bloggs.com" target="_blank"><i class="bi bi-envelope-fill icon px-2"></i>temf2006@gmail.com</a></li>
+                                    <li><a href="#"><i class="bi bi-telephone-fill icon px-2"></i>+1725-261-1885</a></li>
+                                    <li><a href="https://goo.gl/maps/QvCDNtAM8ZRwdXt57"><i class="bi bi-geo-alt-fill icon px-2"></i>Las Vegas, NV </a></li>
+                                </ul>
+                            </div>
+                            
+                            <div class="">
+                              <span class="d-none d-lg-block mx-5 "><img class="img-fluid rounded-1 mx-auto" src={% static  'images/myLocation.png'%} alt="..." /></span>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                </div>
+                <hr class="text-dark mx-4 px-4">
+                <div class="container">
+                    <h6 class="my-3 mx-2 header-link text-center">Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</h6>
+                    <div class="row mx-5">
+                    
+                      <div class="col-lg-8 col-md-10 mx-auto p-2 ">  
+                        <div class="card border-success shadow my-3 p-3">
+                          <div class="card-body text-start  ">
+                            <form action="/contact/" method="post" id="myForm" class="row row-cols-1 row-cols-md-1 g-4 needs-validation was-validated" onkeyup="checkForm()" autocomplete="off" novalidate="">
+                            
+                               {% csrf_token %}
+                              <div id="div_id_full_name" class="form-group"> 
+                               
+                                <div> 
+                                  <input type="text" name="full_name" maxlength="100" placeholder="Full name*" class="textinput textInput form-control form-control-sm" required="" id="id_full_name"> 
+                                </div> 
+                              </div> 
+                              <div id="div_id_email" class="form-group"> 
+                                
+                                <div> 
+                                  <input type="email" name="email" maxlength="254"   placeholder="Email*" class="emailinput form-control form-control-sm" required="" id="id_email">
+                                </div>
+                               </div> 
+                               <div id="div_id_subject" class="form-group">
+                                  
+                                 <div> 
+                                  <input type="text" name="subject" maxlength="255" placeholder="Subject" class="textinput textInput form-control form-control-sm" required="" id="id_subject">
+                                 </div> 
+                                </div> 
+                                <div id="div_id_message" class="form-group"> 
+                                   
+                                  <div> 
+                                    <textarea name="message" cols="30" rows="4" maxlength="500" placeholder="Message" class="textarea form-control form-control-sm" required="" id="id_message"></textarea>
+                                  </div> 
+                                </div>
+                              <input type="submit" value="Submit" name="contact"  class="btn btn-outline-success btn-sm" id="submitContact">
+                           </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                   
+                </div>
+            </div>
+           
+        </div> 
+    </div>
+
+    <div class=" d-flex justify-content-center ">
+        <a class="pe-5 " href="https://www.facebook.com/temesgen.tshome"><i class="bi bi-facebook hover-target"></i></a>
+        <a class="pe-5" href="https://www.linkedin.com/in/temesgen-t-zenebe-9a7980183"><i class="bi bi-linkedin hover-target"></i></a>
+        <a class="pe-5" href="https://github.com/temesgen-zenebe"><i class="bi bi-github hover-target"></i></a>
+    </div>
+
+    <div class="m-3 py-4 navbar-bg">
+        <div class="small text-white text-center">
+            copyright &copy; {% now 'Y' %},
+            <a class="text-white " style="text-decoration: none;" href="#scrollspyHeading1">Temesgen's Portfolio</a>
+        </div>
+    </div>
+
+     <!-- Modal portfolio:detail-->
+    <div class="modal fade" id="portfolioDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xxl  modal-dialog-scrollable modal-fullscreen-xxl-down">
+          <div class="modal-content">
+            {% if project %}
+            <div class="modal-header">
+              <h5 class="card-title">{{ project.title }} </h5>
+              <a href = "{% url 'portfolio:home' %}" type="button" class="btn-close justify-content-md-end" aria-label="Close"></a>
+            </div>
+           
+            <div class="modal-body">
+                <div class="list-group list-group-horizontal-xxl text-start">    
+                  
+                  <div class="col p-3 m-0 border-0 bd-example">
+                    <!-- Example Code -->
+                    <h6 class="card-title text-center mx-auto">Project Demo </h6>
+                    <div class="container my-3 mx-auto rounded" style="max-width: 100%;">
+                      <section id="testimonial-slider" >
+                        <div class="container border shadow">
+                         
+                            <div id="carouselExampleDark" class="carousel carousel-dark slide text-center py-4" data-bs-ride="carousel">
+                                
+                                <div class="col-sm-10 mx-auto">
+                                    <div class="carousel-inner text-center text-dark py-4">
+                                      {% if picture %}
+                                        {% for pictures in picture %}
+                                          {% if pictures.project|stringformat:'s' == project.title|stringformat:'s' %}
+                                            {% if forloop.first %} 
+                                            <div class="carousel-item active" data-bs-interval="10000">
+                                            {% else %}    
+                                            <div class="carousel-item" data-bs-interval="10000">   
+                                            {% endif %}
+                                            
+                                            <div class="row d-flex justify-content-center">
+                                                <div class="col-lg-8">
+                                                  <img src="{{pictures.demoImages.url}}" class="card-img-top mx-auto d-block" height="200px" alt="{{pictures.alt}}">
+                                                </div>
+                                              </div>
+                                        
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                      {% endif %}
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                      </section>
+                    </div>
+                    
+                    <!-- End Example Code -->
+                  </div>
+                  <hr>
+                  <div class="col my-3">
+                    <div class="card shadow border-0">
+                      <div class="card-body mx-2">
+                        <h5 class="card-title">Description</h5>
+                        <hr>
+                        <p class="card-text text-start">{{ project.description|capfirst }}</p>
+                        <hr>
+                        <!-- Example Code -->
+                        <div class="row row-cols-1 row-cols-md-2 mx-1">
+                          <div class="col border my-1 py-2" role="group" aria-label="Large button group">
+                            <h6 class="my-3">Utilized Full stack Languages and Frameworks</h6>
+                            
+                            {% if languages %}
+                              {% for logo in languages %}
+                                {% if logo.project|stringformat:"s" == project.title|stringformat:"s"  %}
+                                <button type="button" class="btn btn-outline-info">
+                                  <img  style="max-width: 2.5rem" class="img-fluid  rounded-circle mx-auto mb-2" src={{logo.logo.url}} alt="..." />
+                                </button>
+                                {% endif %}
+                              {% endfor %}
+                            {% endif %}
+                            
+                          </div>
+                          <div class="col border my-1 py-3" role="group" aria-label="Large button group">
+                            <div class="container btn btn-outline-info pt-4">
+                              <div class="rating">
+                                <p>How Would You Rate the Web App?</p>
+                                <form class='stars'>
+                                  <input type="radio" name='stars' value='5' id='five' class='star' >
+                                  <label for="five"><i class='fa fa-star'></i></label>
+                                  <input type="radio" name='stars' value='4' id='four' class='star'>
+                                  <label for="four"><i class='fa fa-star'></i></label>
+                                  <input type="radio" name='stars' value='3' id='three' class='star'>
+                                  <label for="three"><i class='fa fa-star'></i></label>
+                                  <input type="radio" name='stars' value='2' id='two' class='star'>
+                                  <label for="two"><i class='fa fa-star'></i></label>
+                                  <input type="radio" name='stars' value='1' id='one' class='star' checked>
+                                  <label for="one"><i class='fa fa-star '></i></label>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Example Code -->
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="col shadow">
+                    <nav>
+                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">All Comment <span class="mx-1">({{comment|length}})</span></button>
+                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Comment</button>
+                      </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                      <div class="tab-pane fade show active  my-1 py-1" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                        <div class="card my-2 mx-1 border-0">
+                          <div class="card-body">
+                            <h6 class="card-title">Your comment </h6>
+                            <hr>
+                            {% if comment %}
+                              {% for comments in comment %}
+                                {% if comments.project|stringformat:"s" == project.title|stringformat:"s"  %}
+                               
+                                <div role="alert" aria-live="assertive" aria-atomic="true" class="hide" data-bs-autohide="false">
+                                  <div class="toast-header">
+                                    <div id="container-fm">
+                                      <div class="name-fm"></div>
+                                    </div>
+                                    <strong class="me-auto mx-2"><span class="fullName mx-2">{{comments.fistName}}</span><span class="lastName">{{comments.lastName}}</span></strong>
+                                    <small>{{comments.created|timesince }} </small>
+                                  </div>
+                                  <div class="toast-body mx-5 my-2">
+                                    <small>{{comments.message|capfirst}}</small>
+                                  </div>
+                                </div>
+                                <hr>
+                                {% endif %}
+                              {% endfor %}
+                            {% endif %}
+                            
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade  my-1 py-1" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                        <div class="card my-2 mx-1 border-0">
+                          <div class="card-body mx-2">
+                            <h6 class="card-title text-center mx-auto">Your comment maint to be very carousel for me.
+                               I appreciate any help you can provide.</h6>
+                            <hr>
+                            <div class="row mx-5">
+                              <div class="col-lg-8 col-md-10 mx-auto p-2 ">  
+                                <form onkeyup="checkForm()" autocomplete="off"  action="" method="post" id="myFormone" class="row row-cols-1 row-cols-md-1 g-4 needs-validation was-validated" novalidate="">
+                                    {% csrf_token %}
+                                    
+                                    <div class="col">
+                                      <input type="text" name="fistName" class="form-control" id="validationCustom01" autocomplete="off" value="" required="" placeholder="Full Name">
+                                      <div class="invalid-feedback " >
+                                       Please enter a full_name.
+                                      </div>
+                                    </div>
+                                    <div class="col">
+                                      <input type="textarea" name="lastName" class="form-control" id="validationCustom02" value=""  autocomplete="off" placeholder="LastName" required="">
+                                      <div class="invalid-feedback">
+                                        Please provide a subject.
+                                      </div>
+                                    </div>
+                                    <div class="col">
+                                      <input type="email" name="email"  class="form-control" id="validationCustom03" value="" autocomplete="off" placeholder="Email" required="">
+                                      <div class="invalid-feedback">
+                                      Please enter your email
+                                      </div>
+                                    </div>
+                                    <div class="col">
+                                        <textarea  rows="3"  name="message" class="form-control" id="validationCustom04" value=""  autocomplete="off" placeholder="Message" required=""></textarea>
+                                        <div class="invalid-feedback">
+                                        Please provide a Message.
+                                        </div>
+                                    </div>
+                                    <div class="form-group btn-group btn-group-sm py-1 d-grid col-12 mx-auto" role="group" aria-label="Small button group">
+                                        <input type="submit" class="btn btn-outline-success btn-sm" id="submitContact" >
+                                    </div>
+                                  </form>
+                               
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+    </div> 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          
+            <div class="modal-body">
+              <div class="d-flex justify-content-end">
+                <a href = "{% url 'portfolio:home' %}" type="button" class="btn-close justify-content-md-end" aria-label="Close"></a>
+                
+              </div>
+                <div class="list-group list-group-horizontal-xxl text-start p-2 ">    
+                  {% if messages %}
+                    <div class="alert alert-success alert-dismissible fade show text-center " role="alert" data-bs-delay="3000">
+                    <p><strong>Congratulations!!</strong></p>
+                    <ul class="list-group list-group-horizontal-xxl text-start">    
+                      {% for message in messages %} 
+                        <li{% if message.tags %} class="{{ message.tags }}  list-group-item  alert-success"{% endif %}><i class="bi bi-check2-square px-2"></i> {{ message }}</li>
+                      {% endfor %}
+                    </ul>
+                     
+                    </div>
+                  {% endif %}
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>  
+
+<!--modal lanching event handeler-->
+    {% if portfolioDetail  %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+          $("#portfolioDetailModal").modal('show');
+      });
+    </script>
+    {% endif %} 
+    {% if messages %}
+     {% for message in messages %} 
+       {% if message.tags %}
+          <script type="text/javascript">
+              $(document).ready(function(){
+                $("#exampleModal").modal('show');
+            });
+          </script>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+   
+
+    <script type="text/javascript">if ( window.history.replaceState ) { window.history.replaceState( null, null, window.location.href ); }</script>
+    <script type="text/javascript" src="{% static 'js/min.js' %}"></script>
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+</body>
+</html>
